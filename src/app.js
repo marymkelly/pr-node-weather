@@ -80,10 +80,10 @@ app.get('/weather', (req, res) => {
 				console.log(error);
 				return;
 			}
-
   			res.send({ 
 				forecast: forecastData,
-				location, 
+				location,
+				dataString: forecastData.dataString,
 				address: req.query.address
 			});
 		});

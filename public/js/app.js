@@ -19,7 +19,7 @@ weatherForm.addEventListener('submit', (e) => {
 				messageOne.textContent = data.error;
 			} else {
 				messageOne.textContent = data.location;
-				messageTwo.textContent = data.forecast.description + '. The temperature outside is ' + data.forecast.temperature + '; It feels like ' + data.forecast.feelsLike + '.';
+				messageTwo.textContent = data.dataString;
 			}
 		})
 	}).catch((error) => {
