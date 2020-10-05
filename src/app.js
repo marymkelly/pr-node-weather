@@ -6,6 +6,7 @@ const geocode = require('./utils/geocode');
 const forecast = require('./utils/forecast');
 
 const app = express();
+const port = process.env.PORT || 3000;
 
 // Define paths for Express config
 const publicDir = path.join(__dirname, '../public');
@@ -48,17 +49,6 @@ app.get('/help', (req, res) => {
 		name: 'Mary',
 		message: 'You need help? Pshht. I need help...'
 	})
-	// res.send([{
-
-	// 	name: 'Mary',
-	// 	age: 27
-
-	// }, { 
-
-	// 	name: 'Joanne',
-	// 	age: 'Never ask a lady her age'
-	// }
-	// ]);
 })
 
 app.get('/about', (req, res) => {
@@ -90,14 +80,12 @@ app.get('/weather', (req, res) => {
 				console.log(error);
 				return;
 			}
-			
-	  		// console.log(location)
-	  		// console.log(forecastData)
-	  			res.send({ 
-					forecast: forecastData,
-					location, 
-					address: req.query.address
-				});
+
+  			res.send({ 
+				forecast: forecastData,
+				location, 
+				address: req.query.address
+			});
 		});
 	});
 
@@ -109,10 +97,6 @@ app.get('/help/*', (req, res) => {
 		name: 'Mary',
 		type: 'Help Article'
 	});
-	// res.render('index', {
-	// 	title: 'Weather App',
-	// 	name: 'Mary'
-	// });
 })
 
 app.get('*', (req, res) => {
@@ -121,12 +105,8 @@ app.get('*', (req, res) => {
 		name: 'Mary',
 		type: 'Page'
 	});
-	// res.render('index', {
-	// 	title: 'Weather App',
-	// 	name: 'Mary'
-	// });
 })
 
-app.listen(3000, () => {
-	console.log('Server Running')
+app.listen(port, () => {
+	console.log('Server Running on ' + port);
 })
